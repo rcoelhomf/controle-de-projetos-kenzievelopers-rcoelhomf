@@ -6,7 +6,7 @@ import {
     developer2,
     developerUpdate1,
 } from '../../mocks/developers.mock'
-import { client } from '../../../database'
+import { client } from '../../../database/database'
 
 describe('PATCH - /developers/:id', () => {
     beforeAll(async () => {

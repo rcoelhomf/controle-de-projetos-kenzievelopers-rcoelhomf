@@ -1,7 +1,7 @@
 import { Client, ClientConfig } from 'pg'
 import 'dotenv/config'
 
-const databaseConfig = (): ClientConfig => {
+export const databaseConfig = (): ClientConfig => {
     if (process.env.NODE_ENV === 'test') {
         return {
             user: process.env.DB_TEST_USER!,
@@ -19,11 +19,9 @@ const databaseConfig = (): ClientConfig => {
         port: Number(process.env.DB_PORT!),
     }
 }
-const client: Client = new Client(databaseConfig())
+export const client: Client = new Client(databaseConfig())
 
-const startDatabase = async () => {
+export const startDatabase = async () => {
     await client.connect()
     console.log('Database connected.')
 }
-
-export { client, startDatabase }

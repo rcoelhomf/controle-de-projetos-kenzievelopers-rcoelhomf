@@ -2,7 +2,7 @@ import supertest from 'supertest'
 import app from '../../../app'
 import { main } from '../../configs/configTestsDatabase'
 import { developer1 } from '../../mocks/developers.mock'
-import { client } from '../../../database'
+import { client } from '../../../database/database'
 
 describe('DELETE - /developers/:id', () => {
     beforeAll(async () => {

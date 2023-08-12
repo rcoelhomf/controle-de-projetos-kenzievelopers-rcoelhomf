@@ -1,6 +1,9 @@
 import express, { Application } from "express";
 import "dotenv/config";
+import { developRoutes } from "./routers/developer.routers";
 
-const app: Application = express();
+export const app: Application = express();
 
-export default app;
+app.use(express.json())
+
+app.use('/developers', developRoutes)

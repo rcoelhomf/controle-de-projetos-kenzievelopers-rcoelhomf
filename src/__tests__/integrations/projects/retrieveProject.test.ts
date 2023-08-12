@@ -3,7 +3,7 @@ import supertest from 'supertest'
 import app from '../../../app'
 import { developer1 } from '../../mocks/developers.mock'
 import { project1 } from '../../mocks/projects.mock'
-import { client } from '../../../database'
+import { client } from '../../../database/database'
 
 describe('GET - /projects/:id', () => {
     beforeAll(async () => {

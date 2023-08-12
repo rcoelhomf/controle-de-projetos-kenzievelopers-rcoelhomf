@@ -9,7 +9,7 @@ import {
     projectUpdate2,
     projectUpdateNotValidDeveloperId,
 } from '../../mocks/projects.mock'
-import { client } from '../../../database'
+import { client } from '../../../database/database'
 
 describe('PATCH - /projects/:id', () => {
     beforeAll(async () => {
