@@ -1,10 +1,11 @@
 import { Router } from "express";
 import { deleteDeveloperController, getDevelopersController, patchDeveloperController, postDevelopersController, postInfosController } from "../controllers/developers.controller";
+import { verefyDeveloperExists, verifyIfEmailExists, verifyInfosExists, verifyOS } from "../middlewares/middlewares";
 
 export const developRoutes: Router = Router()
 
-developRoutes.post('', postDevelopersController)
-developRoutes.get('/:id', getDevelopersController)
-developRoutes.patch('/:id', patchDeveloperController)
-developRoutes.delete('/:id', deleteDeveloperController)
-developRoutes.post('/:id/infos', postInfosController)
+developRoutes.post('', verifyIfEmailExists, postDevelopersController)
+developRoutes.get('/:id', verefyDeveloperExists, getDevelopersController)
+developRoutes.patch('/:id', verefyDeveloperExists, verifyIfEmailExists, patchDeveloperController)
+developRoutes.delete('/:id', verefyDeveloperExists, deleteDeveloperController)
+developRoutes.post('/:id/infos', verefyDeveloperExists, verifyOS, verifyInfosExists, postInfosController)
