@@ -1,4 +1,4 @@
-import { app } from './app'
+import app from './app'
 import { startDatabase } from './database/database'
 
 const PORT = Number(process.env.PORT) || 3000

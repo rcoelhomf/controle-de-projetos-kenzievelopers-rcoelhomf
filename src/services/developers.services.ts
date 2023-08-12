@@ -1,7 +1,7 @@
-import { Developer, DevelopersData, Infos, developerCreate, infoCreate } from "../interfaces";
-import { QueryResult } from "pg";
-import { client } from "../database/database";
-import format from "pg-format";
+import { Developer, DevelopersData, Infos, developerCreate, infoCreate } from '../interfaces'
+import { QueryResult } from 'pg'
+import { client } from '../database/database'
+import format from 'pg-format'
 
 export const registerNewDeveloper = async (body: developerCreate): Promise<Developer> => {
     const queryString: string = format(`
@@ -13,7 +13,7 @@ export const registerNewDeveloper = async (body: developerCreate): Promise<Devel
         Object.values(body)
     )
 
-    const queryResult: QueryResult<Developer> = await client.query(queryString)
+    const queryResult: QueryResult = await client.query(queryString)
     
     return queryResult.rows[0]
 }
@@ -25,7 +25,7 @@ export const getDeveloperInfo = async (id: number): Promise<DevelopersData> => {
             "d"."name" AS "developerName",
             "d"."email" AS "developerEmail",
             "di"."developerSince" AS "developerInfoDeveloperSince",
-            "di"."preferedOS" AS "developerInfoPreferredOS"
+            "di"."preferredOS" AS "developerInfoPreferredOS"
         FROM "developers" AS "d"
         LEFT JOIN "developerInfos" AS "di"
             ON "di"."developerId" = "d"."id"
@@ -58,14 +58,19 @@ export const dropDeveloper = async (id: number): Promise<void> => {
 }
 
 export const insertDeveloperInfo = async (body: infoCreate, id: number): Promise<Infos> => {
-    const queryString: string = `
-        INSERT INTO "developerInfos" ("developerSince", "preferedOS", "developerId")
-        VALUES ($1, $2, $3)
-        RETURNING *;
-    `
-    const date = new Date(Object.values(body)[0])
+    if(body.developerSince) body.developerSince = new Date(body.developerSince)
+    const developerInfos = {...body, developerId: id}
+    
+    const queryString: string = format(`
+            INSERT INTO "developerInfos" (%I)
+            VALUES (%L)
+            RETURNING *;
+        `,
+        Object.keys(developerInfos),
+        Object.values(developerInfos)
+    )
 
-    const queryResult: QueryResult<Infos> = await client.query(queryString, [date, Object.values(body)[1], id])
+    const queryResult: QueryResult = await client.query(queryString)
 
     return queryResult.rows[0]
 }

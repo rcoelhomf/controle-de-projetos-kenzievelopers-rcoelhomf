@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import { dropDeveloper, getDeveloperInfo, insertDeveloperInfo, registerNewDeveloper, updateDeveloper } from "../services/developers.services";
+import { Request, Response } from 'express'
+import { dropDeveloper, getDeveloperInfo, insertDeveloperInfo, registerNewDeveloper, updateDeveloper } from '../services/developers.services'
 
 export const postDevelopersController = async (req: Request, res: Response): Promise<Response> => {
     const developer = await registerNewDeveloper(req.body)

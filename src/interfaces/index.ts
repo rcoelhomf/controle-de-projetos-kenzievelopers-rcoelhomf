@@ -6,7 +6,7 @@ export interface Developer {
 
 export interface Infos {
     id: number;
-    developerSinece: Date;
+    developerSince: Date;
     preferedOS: 'Windows' | 'Linux' | 'MacOS';
     developerId: number;
 }
@@ -27,6 +27,16 @@ export interface DevelopersData {
     developerEmail: string;
     developerInfoDeveloperSince: Date | null;
     developerInfoPreferedOS: string | null;
+}
+
+export interface ProjectData {
+    projectId: number;
+    projectName: string;
+    projectDescription: string;
+    projectRepository: string;
+    projectStartDate: Date;
+    projectEndDate: Date | null;
+    projectDeveloperName: string | null;
 }
 
 export type developerCreate = Omit<Developer, 'id'>

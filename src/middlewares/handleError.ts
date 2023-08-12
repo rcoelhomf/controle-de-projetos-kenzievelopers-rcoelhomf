@@ -1,5 +1,5 @@
-import { NextFunction, Request, Response } from "express";
-import { AppError } from "../errors/app.error";
+import { NextFunction, Request, Response } from 'express'
+import { AppError } from '../errors/app.error'
 
 export const handleError = (err: unknown, req: Request, res: Response, next: NextFunction): Response => {
     if(err instanceof AppError) {
@@ -7,5 +7,5 @@ export const handleError = (err: unknown, req: Request, res: Response, next: Nex
     }
 
     console.error(err)
-    return res.status(500).json({message: "Internal server error"})
+    return res.status(500).json({message: 'Internal server error'})
 }

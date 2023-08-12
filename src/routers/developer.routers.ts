@@ -1,6 +1,6 @@
-import { Router } from "express";
-import { deleteDeveloperController, getDevelopersController, patchDeveloperController, postDevelopersController, postInfosController } from "../controllers/developers.controller";
-import { verefyDeveloperExists, verifyIfEmailExists, verifyInfosExists, verifyOS } from "../middlewares/middlewares";
+import { Router } from 'express'
+import { deleteDeveloperController, getDevelopersController, patchDeveloperController, postDevelopersController, postInfosController } from '../controllers/developers.controller'
+import { verefyDeveloperExists, verifyIfEmailExists, verifyInfosExists, verifyOS } from '../middlewares/developer.middlewares'
 
 export const developRoutes: Router = Router()
 

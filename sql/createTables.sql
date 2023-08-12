@@ -9,7 +9,7 @@ CREATE TYPE "OS" AS ENUM ('Windows', 'Linux', 'MacOS');
 CREATE TABLE IF NOT EXISTS "developerInfos" (
 	"id" SERIAL PRIMARY KEY,
 	"developerSince" DATE NOT NULL,
-	"preferedOS" "OS" NOT NULL, 
+	"preferredOS" "OS" NOT NULL, 
 	"developerId" INTEGER UNIQUE NOT NULL,
 	FOREIGN KEY ("developerId") REFERENCES "developers"("id") ON DELETE CASCADE
 );
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS "projects" (
 	"name" VARCHAR(50) NOT NULL,
 	"description" TEXT,
 	"repository" VARCHAR(120) NOT NULL,
-	"startaDate" DATE NOT NULL,
+	"startDate" DATE NOT NULL,
 	"endDate" DATE DEFAULT NULL,
 	"developerId" INTEGER DEFAULT NULL,
 	FOREIGN KEY ("developerId") REFERENCES "developers"("id") ON DELETE SET NULL
