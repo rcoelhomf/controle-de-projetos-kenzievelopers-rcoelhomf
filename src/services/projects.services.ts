@@ -4,6 +4,7 @@ import { QueryResult } from "pg";
 import { client } from "../database/database";
 
 export const createNewProject = async (body: projectsCreate): Promise<Projects> => {
+    body.startDate = new Date(body.startDate)
     if(body.endDate) body.endDate = new Date(body.endDate)
     
     const queryString: string = format(`
